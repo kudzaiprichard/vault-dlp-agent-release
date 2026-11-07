@@ -24,10 +24,35 @@ This repository holds the **downloads and user documentation** only.
 | Guide                                              | For                                                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | This page                                          | Everyone: download, install, connect, upgrade, uninstall                                    |
+| [docs/new-environment.md](docs/new-environment.md) | Administrators: rolling out Vault in your organisation, from the server to every PC         |
 | [docs/deploying.md](docs/deploying.md)             | IT administrators: silent installs, installer options, settings files, PCs without internet |
 | [docs/settings.md](docs/settings.md)               | IT administrators: every setting in the agent's settings file                               |
 | [docs/troubleshooting.md](docs/troubleshooting.md) | Everyone: when something doesn't work                                                       |
 | [CHANGELOG.md](CHANGELOG.md)                       | What changed in each version                                                                |
+
+## Rolling out Vault in your organisation
+
+The server is set up once per organisation; the agent once per PC. In short:
+
+1. **Install the [Vault Server](https://github.com/kudzaiprichard/vault-dlp-server-release)** on
+   one Windows machine that stays on, following its
+   [rollout guide](https://github.com/kudzaiprichard/vault-dlp-server-release/blob/main/docs/rollout.md).
+   During setup, give every name or IP address the employees' PCs will use to reach it.
+2. **Sign in at `https://<server>`** as `admin@vault.local` with password `@Vault12`, and **change
+   that password straight away**.
+3. **Upload this agent's installer** under **Devices → Download agent**: the `.exe` from the
+   [latest release](https://github.com/kudzaiprichard/vault-dlp-agent-release/releases/latest)
+   plus the contents of its `.sha256` file. Once per agent version.
+4. **Download the agent package** on the same page. Choose a server address the PCs can reach (not
+   `localhost`) and **No key**. One zip works for every PC; keep it.
+5. **On each PC:** extract the zip, double-click the setup, and click **Yes** on the certificate
+   prompt.
+6. **Approve each PC** under **Devices** on the dashboard, then check it's protected: the tray
+   tooltip says **Inspecting traffic**, and a test card (`4111 1111 1111 1111`) sent to ChatGPT is
+   blocked.
+
+Every agent step in detail (silent and managed installs, the certificate prompt, upgrades,
+uninstalling, fixes): [docs/new-environment.md](docs/new-environment.md).
 
 ## Requirements
 
