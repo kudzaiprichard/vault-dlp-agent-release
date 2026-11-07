@@ -43,8 +43,9 @@ Decide before you install:
 - **The address employees' PCs will use to reach it.** A name such as `vault.company.local`, or a
   fixed IP address such as `192.168.1.10`. Give the server machine a fixed IP (or a DHCP
   reservation) so the address doesn't change. `localhost` only works on the server machine itself.
-- **The network path.** Employees' PCs must reach the server on **port 443 (HTTPS)**. If the
-  server machine's firewall or your network blocks it, allow it.
+- **The network path.** Employees' PCs must reach the server on its **HTTPS port, usually 443**
+  (server setup picks 8443 or 9443 if 443 is taken). If the server machine's firewall or your
+  network blocks it, allow it.
 - **The employees' PCs.** Windows 10 or 11, 64-bit, about 1.5 GB of free memory and 700 MB of disk.
   Each PC downloads the detection model (about 630 MB) once on first start. For PCs without
   internet, see [PCs without internet](deploying.md#pcs-without-internet).
@@ -56,17 +57,18 @@ Download the latest Vault Server from its
 follow the server's
 [rollout guide](https://github.com/kudzaiprichard/vault-dlp-server-release/blob/main/docs/rollout.md).
 
-When setup asks for the addresses the server answers on, include **every name and IP the
-employees' PCs will use** (step 1). The server's HTTPS certificate covers only those addresses; an
-agent that connects under any other name is refused. You can add addresses later with the server's
-configuration tool (see the server's guide).
+The server's HTTPS certificate covers only the addresses it is set up with; an agent that connects
+under any other name is refused. The quick install adds the machine's name, `<name>.local` and its
+network IP addresses by itself. Any other name the employees' PCs will use (step 1), such as
+`vault.company.local`, must be added in setup's custom questions. You can add addresses later with
+`Vault Control.cmd config`; agents need nothing new afterwards.
 
 ## 3. First sign-in
 
 1. On the server machine, open `https://localhost` (or `https://<server>` from another PC) and
    sign in with the default administrator account: `admin@vault.local`, password `@Vault12`.
    Every Vault install starts with this same account.
-2. **Change the administrator password straight away** (account menu → **Change your password**).
+2. **Change the administrator password straight away** (account menu → **Change password**).
    While a default password is in use, the dashboard shows a red warning: anyone who can reach the
    dashboard could sign in with it. Better still, add your own administrator under **Users** and
    deactivate the default account.
@@ -165,7 +167,8 @@ model has downloaded, the tray icon has an amber badge: protection is on, with r
 ## 8. Approve the PCs
 
 With **No key**, each PC appears under **Devices** as waiting. Open it and assign a registration
-key to let it in (or create a key under **Registration keys** that approves PCs automatically). The
+key to let it in. To let PCs in without doing this one by one, add an assignment rule under
+**Registration keys → New rule**. The
 agent then gets your policies within a minute or two and shows **Connected** on its Status page.
 
 ## 9. Check that it works
@@ -185,14 +188,14 @@ On one PC:
 | --- | --- |
 | **A new agent version is released** | Upload it (step 4), then download a new package (step 5) for new PCs. For existing PCs, run the new installer on them (or the [silent upgrade](deploying.md#upgrades)): settings, the PC's identity and anything waiting to be sent are kept |
 | **A new employee or PC** | Install the same package on it (step 7) and approve it (step 8) |
-| **The server's address changes** | Add the new address with the server's configuration tool, download a new package, and reinstall it on the PCs, or change the address in each agent (Settings → Server connection) |
+| **The server's address changes** | Add the new address with `Vault Control.cmd config` on the server, download a new package, and reinstall it on the PCs, or change the address in each agent (Settings → Server connection) |
 | **A PC is retired** | Uninstall the agent on it (**Settings → Apps → Installed apps → DLP Agent → Uninstall**, or `"%LOCALAPPDATA%\DLP Agent\uninstall.exe" /S`), then remove the PC under **Devices**. Uninstalling restores the proxy setting and removes the agent's certificate; see [Uninstall](../README.md#uninstall) and [Uninstalling](deploying.md#uninstalling) |
 
 ## When something goes wrong
 
 | Problem | Check |
 | --- | --- |
-| The PC never appears under Devices | The address in the package is one the PC can reach (not `localhost`); port 443 is open; the zip was extracted before running setup. The install log `%LOCALAPPDATA%\DLP Agent\setup.log` shows which settings were used |
+| The PC never appears under Devices | The address in the package is one the PC can reach (not `localhost`); the server's HTTPS port (usually 443) is open; the zip was extracted before running setup. The install log `%LOCALAPPDATA%\DLP Agent\setup.log` shows which settings were used |
 | The agent says the server's certificate isn't trusted | The package's `root.crt` was left out, or the PC uses an address that wasn't given during the server install |
 | Uploads aren't checked | The certificate prompt was declined or missed: restart the agent (tray icon → Quit, then start **DLP Agent** from the Start menu) and click **Yes** |
 | The tray icon keeps its amber badge | The detection model is still downloading, or the PC has no internet: see [PCs without internet](deploying.md#pcs-without-internet) |
