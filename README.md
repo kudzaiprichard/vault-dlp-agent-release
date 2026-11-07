@@ -1,6 +1,11 @@
-# DLP Agent for Windows
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme-agent-dark.png">
+  <img alt="Vault DLP Agent" src="assets/readme-agent-light.png" width="100%">
+</picture>
 
-The DLP Agent protects an organisation's data on Windows PCs. It checks what people upload or post
+# Vault DLP Agent for Windows
+
+The Vault DLP Agent protects an organisation's data on Windows PCs. It checks what people upload or post
 from browsers and apps (AI chat sites, forms, file uploads) for sensitive information such as card
 numbers, ID numbers, passwords and keys, and personal details, and warns or blocks according to
 the organisation's policies.
@@ -9,7 +14,7 @@ the organisation's policies.
   Only masked findings (`4532-****-****-0366`) reach the organisation's admin server.
 - **Works without a server.** Out of the box it blocks private keys, card numbers and secrets,
   and warns on ID numbers and bank details. Connected to an admin server (the
-  [DLP Server](https://github.com/kudzaiprichard/vault-dlp-server-release)) it follows the
+  [Vault Server](https://github.com/kudzaiprichard/vault-dlp-server-release)) it follows the
   organisation's policies and reports incidents to its dashboard.
 - **Keeps working offline.** With no connection it keeps the last policies and queues its reports
   until the server is back.
@@ -67,7 +72,7 @@ download it again.
 3. Setup explains that Windows will ask about a certificate called **DLP Agent Local Root CA**.
    **Click Yes.** The agent needs it to check secure (HTTPS) uploads. The certificate is created on
    your PC and never leaves it.
-4. The agent starts in the system tray (the shield icon next to the clock) and starts with Windows
+4. The agent starts in the system tray (the Vault icon next to the clock: a dial on a dark teal tile) and starts with Windows
    from then on.
 
 It installs for the current Windows user only, and needs no administrator rights.
@@ -93,7 +98,9 @@ The PC then appears on the admin server's dashboard under **Devices**.
 
 ## Check that it works
 
-- The tray icon's tooltip says **DLP Agent: Inspecting traffic**.
+- The tray icon's tooltip says **DLP Agent: Inspecting traffic**. An amber badge on the icon means
+  it is protecting with rules only for now (the detection model is still downloading); grey means
+  paused, and red means protection couldn't start or was turned off by your administrator.
 - The **Status** page says **Traffic inspection is on**, and the admin server card shows
   **Connected** (when a server is set up).
 
@@ -134,7 +141,7 @@ show only masked values.
 
 ## Related
 
-- [DLP Server releases](https://github.com/kudzaiprichard/vault-dlp-server-release): the admin
+- [Vault Server releases](https://github.com/kudzaiprichard/vault-dlp-server-release): the admin
   server and dashboard the agent reports to.
 
 ---

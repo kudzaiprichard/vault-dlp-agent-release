@@ -2,6 +2,19 @@
 
 What changed in each release of the DLP Agent. Downloads are on the [releases page](https://github.com/kudzaiprichard/vault-dlp-agent-release/releases).
 
+## v0.2.2 (2026-11-07)
+
+### Added
+
+- brand the block page
+- show the Vault mark, wordmark and colours in the app
+- use the Vault mark for the app, installer and tray icons
+
+### Fixed
+
+- don't inspect the signing fields of presigned upload forms
+- drop internal changelog sections from release bodies with CRLF line endings
+
 ## v0.2.1 (2026-11-07)
 
 ### Fixed
