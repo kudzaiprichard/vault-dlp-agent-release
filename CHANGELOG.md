@@ -2,6 +2,28 @@
 
 What changed in each release of the DLP Agent. Downloads are on the [releases page](https://github.com/kudzaiprichard/vault-dlp-agent-release/releases).
 
+## v0.3.0 (2026-11-08)
+
+### Added
+
+- the reason card while the request waits, with tests
+- hold requests for a reason, levels for every item, fleet baselines
+- evaluate the framework with and without behaviour
+- risk levels, reasons to continue and the user's baseline
+- ask for policy schema 4 and step down for older servers
+- assess every request and keep each user's baseline
+- behaviour baselines and the three-dimension risk assessment
+- policy bundle schema 4 types for risk levels
+
+### Fixed
+
+- accept the one-line block message as a block
+- no findings on WebRTC session description lines
+- show normal hours that run past midnight as one range
+- count only real files as uploads in the baseline
+- WebRTC session descriptions are not IP address leaks
+- raise an old default policy_schema on upgrade
+
 ## v0.2.2 (2026-11-07)
 
 ### Added

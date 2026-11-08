@@ -131,14 +131,18 @@ The PC then appears on the admin server's dashboard under **Devices**.
 
 ### What you'll see
 
-| You see                            | Meaning                                                                                                                                                                                                                               |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Upload blocked** pop-up          | What you tried to send contains data your organisation doesn't allow to leave this way, such as a card number pasted into a chatbot. Nothing was sent. Remove the sensitive part, or contact your IT team if you think it's a mistake |
-| **Sensitive data detected** pop-up | It was sent, but contained data to be careful with (for example an ID number). Check the recipient may have it                                                                                                                        |
-| **Sensitive data was sent** pop-up | A large upload was let through so you weren't kept waiting, and the check found something afterwards. Your administrator is informed                                                                                                  |
+| You see                                | Meaning                                                                                                                                                                                                                                                                                          |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Upload blocked** pop-up              | What you tried to send contains data your organisation doesn't allow to leave this way, such as a card number pasted into a chatbot. Nothing was sent. Remove the sensitive part, or contact your IT team if you think it's a mistake                                                            |
+| **Sensitive data detected** pop-up     | It was sent, but contained data to be careful with (for example an ID number). Check the recipient may have it                                                                                                                                                                                   |
+| **Give a reason to continue** pop-up   | Your organisation asks why this should be sent (for example a card number to an approved assistant). The request waits while the Vault DLP window asks for a reason: give one within 2 minutes and it is sent, or choose _Don't send it_. Your reason is recorded for your administrator, masked |
+| **Upload blocked and reported** pop-up | Blocked, and rated critical risk, so your security team was told straight away                                                                                                                                                                                                                   |
+| **Sensitive data was sent** pop-up     | A large upload was let through so you weren't kept waiting, and the check found something afterwards. Your administrator is informed                                                                                                                                                             |
 
-The **Activity** page lists recent findings, always masked: the agent never stores or sends the
-real values.
+The **Activity** page lists recent findings with their risk level (Low to Critical), always masked:
+the agent never stores or sends the real values. The level combines how sensitive the data is,
+whether the destination is approved, and how usual the request is for you. The agent learns how
+often, when and how much you normally send to AI services from counts only, never what you send.
 
 ## Upgrade
 

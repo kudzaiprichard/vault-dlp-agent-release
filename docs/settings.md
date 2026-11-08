@@ -26,7 +26,7 @@ releases page.
 | `ca_cert` | `""` | The server's CA certificate in PEM. A relative path is relative to this folder; the installer copies `/CACERT=` here as `server-ca.pem` |
 | `cert_sha256` | `""` | SHA-256 (hex) of a certificate in the server's chain, as an alternative to `ca_cert` |
 | `trust_first_certificate` | `false` | With neither of the above, pin the certificate chain seen at first registration |
-| `policy_schema` | `3` | Policy bundle schema to ask for. 3 adds channels, exact data, blocked apps and device controls to 2 (AI services, app matching, unreadable content, coverage reports). If the server doesn't serve 3 the agent drops to 2 by itself; set `1` only for much older servers |
+| `policy_schema` | `4` | Policy bundle schema to ask for. 4 adds risk levels (approval classes, behaviour baselines, level responses) to 3 (channels, exact data, blocked apps, device controls), which adds to 2 (AI services, app matching, unreadable content, coverage reports). If the server doesn't serve the newer one the agent steps down to 3 and then 2 by itself; set `1` only for much older servers |
 
 ### Settings that come from the server
 
