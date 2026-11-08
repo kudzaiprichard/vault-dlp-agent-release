@@ -2,6 +2,17 @@
 
 What changed in each release of the DLP Agent. Downloads are on the [releases page](https://github.com/kudzaiprichard/vault-dlp-agent-release/releases).
 
+## v0.3.1 (2026-11-08)
+
+### Fixed
+
+- numbers in telemetry lists are not phone numbers
+
+### Performance
+
+- no model on telemetry endpoints or chatty WebSockets of ordinary sites
+- skip the model on repeated machine-generated text
+
 ## v0.3.0 (2026-11-08)
 
 ### Added
